@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BaiTap\\Blazor\\test\\Blazor\\Blazor\\Blazor.csproj": {}
+    "D:\\BaiTap\\Blazor\\Blazor\\Blazor\\Blazor.csproj": {}
   },
   "projects": {
-    "D:\\BaiTap\\Blazor\\test\\Blazor\\Blazor\\Blazor.csproj": {
+    "D:\\BaiTap\\Blazor\\Blazor\\Blazor\\Blazor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BaiTap\\Blazor\\test\\Blazor\\Blazor\\Blazor.csproj",
+        "projectUniqueName": "D:\\BaiTap\\Blazor\\Blazor\\Blazor\\Blazor.csproj",
         "projectName": "Blazor",
-        "projectPath": "D:\\BaiTap\\Blazor\\test\\Blazor\\Blazor\\Blazor.csproj",
+        "projectPath": "D:\\BaiTap\\Blazor\\Blazor\\Blazor\\Blazor.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\BaiTap\\Blazor\\test\\Blazor\\Blazor\\obj\\",
+        "outputPath": "D:\\BaiTap\\Blazor\\Blazor\\Blazor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

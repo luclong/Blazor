@@ -1,0 +1,102 @@
+﻿@page "/quan-ly-cong-viec"
+@using System;
+@using System.Linq;
+@using Data
+<h3>Quản Lý Công Việc</h3>
+
+<div class="row">
+    <span class="col-lg-3">Công Việc:</span>
+    <div class="col-lg-3">
+        <input type="text" class="form-control-sm" placeholder="Công Việc" @bind="job" />
+    </div>
+
+    <span class="col-lg-3">Tình Trạng</span>
+    <select @bind="status" class="form-control-sm">
+        <option selected>Chưa Bắt Đầu</option>
+        <option>Bắt Đầu</option>
+        <option>Kết Thúc</option>
+        <option>Quá Thời Hạn</option>
+    </select>
+</div>
+<div class="row" style="margin-top:5px;">
+    <div class="col-lg-3">
+        <span>Thời Gian Bắt Đầu</span>
+    </div>
+    <div class="col-lg-3">
+        <input class="" type="date" @bind="starttime"  min="2021-01-02"/>
+    </div>
+    <div class="col-lg-3">
+        <span>Thời Gian Kết Thúc</span>
+    </div>
+    <div class="col-lg-3">
+        <input  type="date" @bind="endtime"  min="2021-01-02" />
+    </div>
+</div>
+<button class="btn btn-success float-right" @onclick="AddJob">Thêm Mới</button>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Công Việc</th>
+            <th>Thời Gian Bắt Đầu</th>
+            <th>Thời Gian Kết Thúc</th>
+            <th>Tình Trạng</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstjob)
+         {
+            <tr>
+                <th>@item.namejob</th>
+                <th>@item.starttime.ToString("dd/MM/yyyy")</th>
+                <th>@item.endtime.ToString("dd/MM/yyyy")</th>
+                <th>@item.status</th>
+                <th><button @onclick="@(e=>EditJob(item.id_Job))" class="btn-info">Sửa</button></th>
+                <th><button @onclick="@(e=>DeleteJob(item.id_Job))" class="btn-danger">Xoá</button></th>
+            </tr>
+         }
+    </tbody>
+</table>
+@functions{ 
+    
+    private DateTime starttime=(DateTime) DateTime.Now;
+    private DateTime endtime=(DateTime) DateTime.Now.AddDays(1);
+}
+@code {
+    
+    private IList<Job> lstjob = new List<Job>();
+    private string job;
+    private string status;
+    private int stt=1;
+    public void AddJob()
+    {
+        if (lstjob.Count(x => x.namejob == job) != 0)
+        {
+            var res = lstjob.FirstOrDefault(x => x.namejob == job);
+            res.namejob = job;
+            res.starttime = starttime;
+            res.endtime = endtime;
+            res.status = status==null?"Chưa Bắt Đầu":status;
+        }
+        if(!string.IsNullOrWhiteSpace(job)&&lstjob.Count(x=>x.namejob==job)==0)
+        {
+                lstjob.Add(new Job { id_Job = stt, namejob = job, starttime = starttime == null ? DateTime.Now : starttime, endtime = endtime == null ? DateTime.Now.AddDays(1) : endtime, status = status == null ? "Chưa Bắt Đầu" : status });
+                stt++;
+        }
+    }
+    public void DeleteJob(int id)
+    {
+        var res = lstjob.FirstOrDefault(x => x.id_Job == id);
+        lstjob.Remove(res);
+    }
+    public void EditJob(int id)
+    {
+        var res = lstjob.FirstOrDefault(x => x.id_Job == id);
+        id = res.id_Job;
+        job = res.namejob;
+        starttime = res.starttime;
+        endtime = res.endtime;
+        status = res.status;
+    }
+}
