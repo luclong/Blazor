@@ -1,0 +1,12 @@
+﻿@page "/"
+<p>Sync rendered by thread @IdOfRenderingThread</p>
+@code
+{
+    int IdOfRenderingThread;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        IdOfRenderingThread =
+          System.Threading.Thread.CurrentThread.ManagedThreadId;
+    }
+}
